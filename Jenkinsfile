@@ -30,8 +30,10 @@ node {
     def dockerImage
     stage('publish docker') {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}" 
-        sh "./gradlew bootJar -Pprod jib  -PjibArchitecture=amd64 -Djib.to.image=farid809/store --no-daemon"
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+    sh "echo ${env.dockerHubUser} "
+ 
+        sh "./gradlew bootJar -Pprod jib -PnodeInstall   -PjibArchitecture=amd64 -Djib.to.auth.username=${env.dockerHubUser} -Djib.to.auth.password=${env.dockerHubPassword} -Djib.to.image=registry.hub.docker.com/farid809/store --no-daemon"
 } 
    }
 }

@@ -36,4 +36,12 @@ node {
         sh "./gradlew bootJar -Pprod jib -PnodeInstall   -PjibArchitecture=amd64 -Djib.to.auth.username=${env.dockerHubUser} -Djib.to.auth.password=${env.dockerHubPassword} -Djib.to.image=registry.hub.docker.com/farid809/store --no-daemon"
 } 
    }
+
+stage('Test Kubernetes Integration') {
+        // Using the kubeconfig file securely
+        withCredentials([file(credentialsId: 'my-kubeconfig', variable: 'KUBECONFIG_PATH')]) {
+// Test command to list all Kubernetes namespaces
+            sh "kubectl get namespaces --kubeconfig=${env.KUBECONFIG_PATH}"
+        }
+    }
 }

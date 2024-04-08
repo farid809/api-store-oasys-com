@@ -37,11 +37,11 @@ node {
 } 
    }
 
-stage('Test Kubernetes Integration') {
+stage('Deploy to Kubernetes') {
         // Using the kubeconfig file securely
         withCredentials([file(credentialsId: 'my-kubeconfig', variable: 'KUBECONFIG_PATH')]) {
 // Test command to list all Kubernetes namespaces
-            sh "kubectl get namespaces --kubeconfig=${env.KUBECONFIG_PATH}"
+            sh "kubectl rollout restart deployment store -n ecom3  --kubeconfig=${env.KUBECONFIG_PATH}"
         }
     }
 }

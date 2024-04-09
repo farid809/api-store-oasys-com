@@ -15,7 +15,7 @@ describe('ProductCategory e2e test', () => {
   const productCategoryPageUrlPattern = new RegExp('/product-category(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const productCategorySample = { name: 'whenever along when' };
+  const productCategorySample = { name: 'loads hideous' };
 
   let productCategory;
 
@@ -133,9 +133,7 @@ describe('ProductCategory e2e test', () => {
       });
 
       it('last delete button click should delete instance of ProductCategory', () => {
-        cy.intercept('GET', '/services/product/api/product-categories/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('productCategory').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -159,11 +157,11 @@ describe('ProductCategory e2e test', () => {
     });
 
     it('should create an instance of ProductCategory', () => {
-      cy.get(`[data-cy="name"]`).type('failing plus');
-      cy.get(`[data-cy="name"]`).should('have.value', 'failing plus');
+      cy.get(`[data-cy="name"]`).type('eek');
+      cy.get(`[data-cy="name"]`).should('have.value', 'eek');
 
-      cy.get(`[data-cy="description"]`).type('convince retreat starry');
-      cy.get(`[data-cy="description"]`).should('have.value', 'convince retreat starry');
+      cy.get(`[data-cy="description"]`).type('proctor carelessly');
+      cy.get(`[data-cy="description"]`).should('have.value', 'proctor carelessly');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

@@ -1,11 +1,10 @@
 {
   "annotations": {
-    "changelogDate": "20240406232752"
+    "changelogDate": "20240408220758"
   },
   "applications": ["store", "product"],
   "clientRootFolder": "product",
   "databaseType": "sql",
-  "entityTableName": "order_item",
   "fields": [
     {
       "fieldName": "quantity",

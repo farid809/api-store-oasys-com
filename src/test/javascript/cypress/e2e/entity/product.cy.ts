@@ -15,7 +15,7 @@ describe('Product e2e test', () => {
   const productPageUrlPattern = new RegExp('/product(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const productSample = { name: 'anonymise', price: 27964.59, productSize: 'S' };
+  const productSample = { name: 'chard interesting fulminate', price: 19910.69, productSize: 'XXL' };
 
   let product;
 
@@ -136,9 +136,7 @@ describe('Product e2e test', () => {
       });
 
       it('last delete button click should delete instance of Product', () => {
-        cy.intercept('GET', '/services/product/api/products/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('product').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -162,16 +160,16 @@ describe('Product e2e test', () => {
     });
 
     it('should create an instance of Product', () => {
-      cy.get(`[data-cy="name"]`).type('energise numb');
-      cy.get(`[data-cy="name"]`).should('have.value', 'energise numb');
+      cy.get(`[data-cy="name"]`).type('perpendicular');
+      cy.get(`[data-cy="name"]`).should('have.value', 'perpendicular');
 
-      cy.get(`[data-cy="description"]`).type('than purity bah');
-      cy.get(`[data-cy="description"]`).should('have.value', 'than purity bah');
+      cy.get(`[data-cy="description"]`).type('opposite attend ack');
+      cy.get(`[data-cy="description"]`).should('have.value', 'opposite attend ack');
 
-      cy.get(`[data-cy="price"]`).type('38.82');
-      cy.get(`[data-cy="price"]`).should('have.value', '38.82');
+      cy.get(`[data-cy="price"]`).type('7436.97');
+      cy.get(`[data-cy="price"]`).should('have.value', '7436.97');
 
-      cy.get(`[data-cy="productSize"]`).select('XL');
+      cy.get(`[data-cy="productSize"]`).select('L');
 
       cy.setFieldImageAsBytesOfEntity('image', 'integration-test.png', 'image/png');
 

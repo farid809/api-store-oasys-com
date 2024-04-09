@@ -1,11 +1,10 @@
 {
   "annotations": {
-    "changelogDate": "20240406233052"
+    "changelogDate": "20240408221058"
   },
   "applications": ["store", "notification"],
   "clientRootFolder": "notification",
   "databaseType": "sql",
-  "entityTableName": "notification",
   "fields": [
     {
       "fieldName": "date",

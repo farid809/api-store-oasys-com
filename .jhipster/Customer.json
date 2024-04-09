@@ -1,10 +1,9 @@
 {
   "annotations": {
-    "changelogDate": "20240406232352"
+    "changelogDate": "20240408220358"
   },
   "applications": ["store"],
   "databaseType": "sql",
-  "entityTableName": "customer",
   "fields": [
     {
       "fieldName": "firstName",

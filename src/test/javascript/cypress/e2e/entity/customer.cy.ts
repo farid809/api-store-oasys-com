@@ -15,7 +15,7 @@ describe('Customer e2e test', () => {
   const customerPageUrlPattern = new RegExp('/customer(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  // const customerSample = {"firstName":"Kaleigh","lastName":"Langosh-Kuhlman","gender":"OTHER","email":"j<^w|@B6.~RZ","phone":"897.644.5478 x61574","addressLine1":"qua aha","city":"Tremainehaven","country":"Nicaragua"};
+  // const customerSample = {"firstName":"Kiera","lastName":"Sanford","gender":"OTHER","email":"M%4@khP*^.Lp.p~C","phone":"331-862-3044 x73954","addressLine1":"coaxingly pish","city":"Fort Stanton","country":"Cayman Islands"};
 
   let customer;
   // let user;
@@ -30,7 +30,7 @@ describe('Customer e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/users',
-      body: {"login":"bitterly pine","firstName":"Hilbert","lastName":"Kerluke"},
+      body: {"login":"C0BB@9Hk\\PFR\\(-WsfC\\.7YsOz8\\j92K","firstName":"Vella","lastName":"O'Hara","email":"Virginia76@hotmail.com","imageUrl":"prophet from","langKey":"lapse inbo"},
     }).then(({ body }) => {
       user = body;
     });
@@ -189,9 +189,7 @@ describe('Customer e2e test', () => {
       });
 
       it.skip('last delete button click should delete instance of Customer', () => {
-        cy.intercept('GET', '/api/customers/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('customer').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -215,31 +213,31 @@ describe('Customer e2e test', () => {
     });
 
     it.skip('should create an instance of Customer', () => {
-      cy.get(`[data-cy="firstName"]`).type('Heloise');
-      cy.get(`[data-cy="firstName"]`).should('have.value', 'Heloise');
+      cy.get(`[data-cy="firstName"]`).type('Remington');
+      cy.get(`[data-cy="firstName"]`).should('have.value', 'Remington');
 
-      cy.get(`[data-cy="lastName"]`).type('Hahn');
-      cy.get(`[data-cy="lastName"]`).should('have.value', 'Hahn');
+      cy.get(`[data-cy="lastName"]`).type('Boehm');
+      cy.get(`[data-cy="lastName"]`).should('have.value', 'Boehm');
 
-      cy.get(`[data-cy="gender"]`).select('OTHER');
+      cy.get(`[data-cy="gender"]`).select('MALE');
 
-      cy.get(`[data-cy="email"]`).type('M`@w.f)');
-      cy.get(`[data-cy="email"]`).should('have.value', 'M`@w.f)');
+      cy.get(`[data-cy="email"]`).type('gjZ@eeY..nBF');
+      cy.get(`[data-cy="email"]`).should('have.value', 'gjZ@eeY..nBF');
 
-      cy.get(`[data-cy="phone"]`).type('868.689.7493 x5648');
-      cy.get(`[data-cy="phone"]`).should('have.value', '868.689.7493 x5648');
+      cy.get(`[data-cy="phone"]`).type('1-512-342-3274 x1104');
+      cy.get(`[data-cy="phone"]`).should('have.value', '1-512-342-3274 x1104');
 
-      cy.get(`[data-cy="addressLine1"]`).type('drat');
-      cy.get(`[data-cy="addressLine1"]`).should('have.value', 'drat');
+      cy.get(`[data-cy="addressLine1"]`).type('suspiciously phew dazzling');
+      cy.get(`[data-cy="addressLine1"]`).should('have.value', 'suspiciously phew dazzling');
 
-      cy.get(`[data-cy="addressLine2"]`).type('a pelt grumble');
-      cy.get(`[data-cy="addressLine2"]`).should('have.value', 'a pelt grumble');
+      cy.get(`[data-cy="addressLine2"]`).type('positively wild mover');
+      cy.get(`[data-cy="addressLine2"]`).should('have.value', 'positively wild mover');
 
-      cy.get(`[data-cy="city"]`).type('East Royalstead');
-      cy.get(`[data-cy="city"]`).should('have.value', 'East Royalstead');
+      cy.get(`[data-cy="city"]`).type('Michelecester');
+      cy.get(`[data-cy="city"]`).should('have.value', 'Michelecester');
 
-      cy.get(`[data-cy="country"]`).type('Malta');
-      cy.get(`[data-cy="country"]`).should('have.value', 'Malta');
+      cy.get(`[data-cy="country"]`).type('Cambodia');
+      cy.get(`[data-cy="country"]`).should('have.value', 'Cambodia');
 
       cy.get(`[data-cy="user"]`).select(1);
 

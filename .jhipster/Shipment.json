@@ -1,11 +1,10 @@
 {
   "annotations": {
-    "changelogDate": "20240406232952"
+    "changelogDate": "20240408220958"
   },
   "applications": ["store", "invoice"],
   "clientRootFolder": "invoice",
   "databaseType": "sql",
-  "entityTableName": "shipment",
   "fields": [
     {
       "fieldName": "trackingCode",

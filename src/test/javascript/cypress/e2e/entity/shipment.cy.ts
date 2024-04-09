@@ -15,7 +15,7 @@ describe('Shipment e2e test', () => {
   const shipmentPageUrlPattern = new RegExp('/shipment(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const shipmentSample = { date: '2024-04-06T11:39:31.450Z' };
+  const shipmentSample = { date: '2024-04-08T03:57:06.610Z' };
 
   let shipment;
   let invoice;
@@ -30,13 +30,13 @@ describe('Shipment e2e test', () => {
       method: 'POST',
       url: '/services/invoice/api/invoices',
       body: {
-        code: 'wavy',
-        date: '2024-04-06T13:27:21.690Z',
-        details: 'ick digitalise in',
-        status: 'CANCELLED',
+        code: 'rightfully overdose',
+        date: '2024-04-08T02:54:42.720Z',
+        details: 'officially',
+        status: 'ISSUED',
         paymentMethod: 'CREDIT_CARD',
-        paymentDate: '2024-04-06T04:19:49.739Z',
-        paymentAmount: 7299.28,
+        paymentDate: '2024-04-08T20:32:30.557Z',
+        paymentAmount: 12268.8,
       },
     }).then(({ body }) => {
       invoice = body;
@@ -178,9 +178,7 @@ describe('Shipment e2e test', () => {
       });
 
       it('last delete button click should delete instance of Shipment', () => {
-        cy.intercept('GET', '/services/invoice/api/shipments/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('shipment').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -204,15 +202,15 @@ describe('Shipment e2e test', () => {
     });
 
     it('should create an instance of Shipment', () => {
-      cy.get(`[data-cy="trackingCode"]`).type('unto oof appreciate');
-      cy.get(`[data-cy="trackingCode"]`).should('have.value', 'unto oof appreciate');
+      cy.get(`[data-cy="trackingCode"]`).type('dollarise');
+      cy.get(`[data-cy="trackingCode"]`).should('have.value', 'dollarise');
 
-      cy.get(`[data-cy="date"]`).type('2024-04-06T15:59');
+      cy.get(`[data-cy="date"]`).type('2024-04-08T15:34');
       cy.get(`[data-cy="date"]`).blur();
-      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-06T15:59');
+      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-08T15:34');
 
-      cy.get(`[data-cy="details"]`).type('pricing');
-      cy.get(`[data-cy="details"]`).should('have.value', 'pricing');
+      cy.get(`[data-cy="details"]`).type('who gorilla ouch');
+      cy.get(`[data-cy="details"]`).should('have.value', 'who gorilla ouch');
 
       cy.get(`[data-cy="invoice"]`).select(1);
 

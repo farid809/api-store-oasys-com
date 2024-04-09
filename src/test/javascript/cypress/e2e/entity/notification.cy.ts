@@ -16,11 +16,11 @@ describe('Notification e2e test', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const notificationSample = {
-    date: '2024-04-06T08:06:15.786Z',
-    sentDate: '2024-04-06T05:09:14.562Z',
-    format: 'SMS',
-    userId: 24996,
-    productId: 18512,
+    date: '2024-04-07T22:38:26.554Z',
+    sentDate: '2024-04-08T17:02:20.307Z',
+    format: 'EMAIL',
+    userId: 31691,
+    productId: 20566,
   };
 
   let notification;
@@ -139,9 +139,7 @@ describe('Notification e2e test', () => {
       });
 
       it('last delete button click should delete instance of Notification', () => {
-        cy.intercept('GET', '/services/notification/api/notifications/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('notification').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -165,24 +163,24 @@ describe('Notification e2e test', () => {
     });
 
     it('should create an instance of Notification', () => {
-      cy.get(`[data-cy="date"]`).type('2024-04-06T05:13');
+      cy.get(`[data-cy="date"]`).type('2024-04-08T15:50');
       cy.get(`[data-cy="date"]`).blur();
-      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-06T05:13');
+      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-08T15:50');
 
-      cy.get(`[data-cy="details"]`).type('duh holder');
-      cy.get(`[data-cy="details"]`).should('have.value', 'duh holder');
+      cy.get(`[data-cy="details"]`).type('snuffling diagnosis');
+      cy.get(`[data-cy="details"]`).should('have.value', 'snuffling diagnosis');
 
-      cy.get(`[data-cy="sentDate"]`).type('2024-04-06T11:44');
+      cy.get(`[data-cy="sentDate"]`).type('2024-04-08T14:35');
       cy.get(`[data-cy="sentDate"]`).blur();
-      cy.get(`[data-cy="sentDate"]`).should('have.value', '2024-04-06T11:44');
+      cy.get(`[data-cy="sentDate"]`).should('have.value', '2024-04-08T14:35');
 
-      cy.get(`[data-cy="format"]`).select('EMAIL');
+      cy.get(`[data-cy="format"]`).select('PARCEL');
 
-      cy.get(`[data-cy="userId"]`).type('19533');
-      cy.get(`[data-cy="userId"]`).should('have.value', '19533');
+      cy.get(`[data-cy="userId"]`).type('29406');
+      cy.get(`[data-cy="userId"]`).should('have.value', '29406');
 
-      cy.get(`[data-cy="productId"]`).type('22308');
-      cy.get(`[data-cy="productId"]`).should('have.value', '22308');
+      cy.get(`[data-cy="productId"]`).type('15466');
+      cy.get(`[data-cy="productId"]`).should('have.value', '15466');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

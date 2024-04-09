@@ -16,12 +16,12 @@ describe('Invoice e2e test', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const invoiceSample = {
-    code: 'besides dawn',
-    date: '2024-04-06T17:39:51.210Z',
-    status: 'PAID',
-    paymentMethod: 'PAYPAL',
-    paymentDate: '2024-04-06T10:15:47.219Z',
-    paymentAmount: 29273.98,
+    code: 'brr arrogantly now',
+    date: '2024-04-08T12:35:04.470Z',
+    status: 'CANCELLED',
+    paymentMethod: 'CASH_ON_DELIVERY',
+    paymentDate: '2024-04-08T17:46:10.084Z',
+    paymentAmount: 12874.75,
   };
 
   let invoice;
@@ -143,9 +143,7 @@ describe('Invoice e2e test', () => {
       });
 
       it('last delete button click should delete instance of Invoice', () => {
-        cy.intercept('GET', '/services/invoice/api/invoices/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('invoice').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -169,26 +167,26 @@ describe('Invoice e2e test', () => {
     });
 
     it('should create an instance of Invoice', () => {
-      cy.get(`[data-cy="code"]`).type('among');
-      cy.get(`[data-cy="code"]`).should('have.value', 'among');
+      cy.get(`[data-cy="code"]`).type('carelessly yummy whimper');
+      cy.get(`[data-cy="code"]`).should('have.value', 'carelessly yummy whimper');
 
-      cy.get(`[data-cy="date"]`).type('2024-04-06T06:58');
+      cy.get(`[data-cy="date"]`).type('2024-04-08T17:04');
       cy.get(`[data-cy="date"]`).blur();
-      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-06T06:58');
+      cy.get(`[data-cy="date"]`).should('have.value', '2024-04-08T17:04');
 
-      cy.get(`[data-cy="details"]`).type('judder knottily very');
-      cy.get(`[data-cy="details"]`).should('have.value', 'judder knottily very');
+      cy.get(`[data-cy="details"]`).type('shakily swell irritably');
+      cy.get(`[data-cy="details"]`).should('have.value', 'shakily swell irritably');
 
-      cy.get(`[data-cy="status"]`).select('CANCELLED');
+      cy.get(`[data-cy="status"]`).select('PAID');
 
       cy.get(`[data-cy="paymentMethod"]`).select('PAYPAL');
 
-      cy.get(`[data-cy="paymentDate"]`).type('2024-04-06T08:16');
+      cy.get(`[data-cy="paymentDate"]`).type('2024-04-08T11:57');
       cy.get(`[data-cy="paymentDate"]`).blur();
-      cy.get(`[data-cy="paymentDate"]`).should('have.value', '2024-04-06T08:16');
+      cy.get(`[data-cy="paymentDate"]`).should('have.value', '2024-04-08T11:57');
 
-      cy.get(`[data-cy="paymentAmount"]`).type('15993.18');
-      cy.get(`[data-cy="paymentAmount"]`).should('have.value', '15993.18');
+      cy.get(`[data-cy="paymentAmount"]`).type('12954.87');
+      cy.get(`[data-cy="paymentAmount"]`).should('have.value', '12954.87');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

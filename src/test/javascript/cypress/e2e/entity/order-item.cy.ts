@@ -15,7 +15,7 @@ describe('OrderItem e2e test', () => {
   const orderItemPageUrlPattern = new RegExp('/order-item(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const orderItemSample = { quantity: 841, totalPrice: 26877.18, status: 'OUT_OF_STOCK' };
+  const orderItemSample = { quantity: 17737, totalPrice: 26118.27, status: 'OUT_OF_STOCK' };
 
   let orderItem;
   let product;
@@ -31,9 +31,9 @@ describe('OrderItem e2e test', () => {
       method: 'POST',
       url: '/services/product/api/products',
       body: {
-        name: 'harbor wonderfully than',
-        description: 'unnecessarily',
-        price: 23158.17,
+        name: 'hatchet',
+        description: 'rowboat',
+        price: 27335.61,
         productSize: 'XL',
         image: 'Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci5wbmc=',
         imageContentType: 'unknown',
@@ -46,11 +46,11 @@ describe('OrderItem e2e test', () => {
       method: 'POST',
       url: '/services/product/api/product-orders',
       body: {
-        placedDate: '2024-04-06T13:43:28.800Z',
-        status: 'COMPLETED',
-        code: 'near after bright',
-        invoiceId: 25765,
-        customer: 'indeed ballot french',
+        placedDate: '2024-04-08T19:25:13.734Z',
+        status: 'CANCELLED',
+        code: 'modulo daintily afore',
+        invoiceId: 2032,
+        customer: 'pastel pfft along',
       },
     }).then(({ body }) => {
       productOrder = body;
@@ -206,9 +206,7 @@ describe('OrderItem e2e test', () => {
       });
 
       it('last delete button click should delete instance of OrderItem', () => {
-        cy.intercept('GET', '/services/product/api/order-items/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('orderItem').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -232,13 +230,13 @@ describe('OrderItem e2e test', () => {
     });
 
     it('should create an instance of OrderItem', () => {
-      cy.get(`[data-cy="quantity"]`).type('31093');
-      cy.get(`[data-cy="quantity"]`).should('have.value', '31093');
+      cy.get(`[data-cy="quantity"]`).type('13361');
+      cy.get(`[data-cy="quantity"]`).should('have.value', '13361');
 
-      cy.get(`[data-cy="totalPrice"]`).type('25766.06');
-      cy.get(`[data-cy="totalPrice"]`).should('have.value', '25766.06');
+      cy.get(`[data-cy="totalPrice"]`).type('31868.3');
+      cy.get(`[data-cy="totalPrice"]`).should('have.value', '31868.3');
 
-      cy.get(`[data-cy="status"]`).select('OUT_OF_STOCK');
+      cy.get(`[data-cy="status"]`).select('AVAILABLE');
 
       cy.get(`[data-cy="product"]`).select(1);
       cy.get(`[data-cy="order"]`).select(1);

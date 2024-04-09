@@ -15,7 +15,7 @@ describe('ProductOrder e2e test', () => {
   const productOrderPageUrlPattern = new RegExp('/product-order(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const productOrderSample = { placedDate: '2024-04-06T11:12:13.806Z', status: 'PENDING', code: 'whereas', customer: 'upright' };
+  const productOrderSample = { placedDate: '2024-04-08T18:55:18.824Z', status: 'PENDING', code: 'yowza', customer: 'mismanage' };
 
   let productOrder;
 
@@ -136,9 +136,7 @@ describe('ProductOrder e2e test', () => {
       });
 
       it('last delete button click should delete instance of ProductOrder', () => {
-        cy.intercept('GET', '/services/product/api/product-orders/*').as('dialogDeleteRequest');
         cy.get(entityDeleteButtonSelector).last().click();
-        cy.wait('@dialogDeleteRequest');
         cy.getEntityDeleteDialogHeading('productOrder').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
@@ -162,20 +160,20 @@ describe('ProductOrder e2e test', () => {
     });
 
     it('should create an instance of ProductOrder', () => {
-      cy.get(`[data-cy="placedDate"]`).type('2024-04-06T20:47');
+      cy.get(`[data-cy="placedDate"]`).type('2024-04-07T22:35');
       cy.get(`[data-cy="placedDate"]`).blur();
-      cy.get(`[data-cy="placedDate"]`).should('have.value', '2024-04-06T20:47');
+      cy.get(`[data-cy="placedDate"]`).should('have.value', '2024-04-07T22:35');
 
-      cy.get(`[data-cy="status"]`).select('PENDING');
+      cy.get(`[data-cy="status"]`).select('COMPLETED');
 
-      cy.get(`[data-cy="code"]`).type('meanwhile unabashedly');
-      cy.get(`[data-cy="code"]`).should('have.value', 'meanwhile unabashedly');
+      cy.get(`[data-cy="code"]`).type('area including');
+      cy.get(`[data-cy="code"]`).should('have.value', 'area including');
 
-      cy.get(`[data-cy="invoiceId"]`).type('6281');
-      cy.get(`[data-cy="invoiceId"]`).should('have.value', '6281');
+      cy.get(`[data-cy="invoiceId"]`).type('22421');
+      cy.get(`[data-cy="invoiceId"]`).should('have.value', '22421');
 
-      cy.get(`[data-cy="customer"]`).type('after');
-      cy.get(`[data-cy="customer"]`).should('have.value', 'after');
+      cy.get(`[data-cy="customer"]`).type('horrible');
+      cy.get(`[data-cy="customer"]`).should('have.value', 'horrible');
 
       cy.get(entityCreateSaveButtonSelector).click();
 
